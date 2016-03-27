@@ -1,0 +1,15 @@
+Node* head1 = NULL;
+    head1 = newNode(4);
+    head1->left = newNode(5);
+    head1->left->left = newNode(6);
+
+    head1->left->right = newNode(7);
+
+    head1->left->right->right = newNode(8);
+
+    head1->left->right->right->right = newNode(9);
+     head1->right =newNode(10);
+     head1->right->left =newNode(12);
+     head1->right->right =newNode(11);
+     head1->right->right->right =newNode(13);
+     head1->right->right->right->right =newNode(14);
