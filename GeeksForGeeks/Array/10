@@ -1,0 +1,23 @@
+/Program for
+array rotation
+// Write a function rotate(ar[], d, n) that rotates arr[] of size n by d elements
+#include<bits/stdc++.h>
+
+using namespace std;
+
+int main() {
+
+    int a[] = {1, 2, 3, 4, 5, 6, 7, 8};
+    int n = sizeof(a) / sizeof(a[0]);
+//    reverse(a,n);
+    int k = 3;
+    for (int i = 0; i < k; i++) {
+        int j = n - 1 - (k - 1) + i;
+        swap(a[i], a[j]);
+    }
+
+    for (int i = 0; i < n; i++)
+        cout << a[i] << " ";
+
+    return 0;
+}

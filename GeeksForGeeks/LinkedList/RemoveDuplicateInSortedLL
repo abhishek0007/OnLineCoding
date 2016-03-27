@@ -1,0 +1,99 @@
+#include<bits/stdc++.h>
+
+using namespace std;
+struct Node {
+    int data;
+    Node *next;
+};
+
+void print(Node *head) {
+    while (head != NULL) {
+        cout << head->data << " ";
+        head = head->next;
+    }
+}
+
+Node *InsertAtAnyPosition(int data, int position, Node *head) {
+    Node *temp = new Node();
+    temp->data = data;
+    temp->next = NULL;
+    if (head == NULL || position == 0) {
+        temp->next = head;
+        head = temp;
+        return head;
+    }
+    else {
+        Node *temp1 = head, *temp2;
+        for (int i = 0; i < position; i++) {
+
+            temp2 = temp1;
+            temp1 = temp1->next;
+        }
+        temp->next = temp2->next;
+        temp2->next = temp;
+
+    }
+    return head;
+}
+
+int DelectLoop(Node *head) {
+    map<Node *, int> m;
+
+    while (head != NULL) {
+
+        if (m[head] == 0)
+            return 1;
+        m[head] = 1;
+        head = head->next;
+    }
+    return 0;
+
+}
+
+Node *reverses(Node *head) {
+    Node *prev = NULL, *next, *current = head;
+    while (current != NULL) {
+        next = current->next;
+        current->next = prev;
+        prev = current;
+        current = next;
+    }
+    head = prev;
+    return head;
+}
+
+
+Node *RepetDe(Node *head) {
+    Node *temp = head;
+    while (temp->next != NULL) {
+        Node *temp2;
+        if (temp->data == temp->next->data) {
+            temp2 = temp->next;
+            temp->next = temp->next->next;
+            free(temp2);
+        }
+        else
+            temp = temp->next;
+    }
+    return head;
+}
+
+int main() {
+
+    Node *head = NULL;
+    int data, position;
+    head = InsertAtAnyPosition(4, 0, head);//4
+    head = InsertAtAnyPosition(4, 0, head);//4,4
+    head = InsertAtAnyPosition(4, 0, head);//4,4,4
+    head = InsertAtAnyPosition(3, 0, head);//3,4,4,4,
+    head = InsertAtAnyPosition(2, 0, head);//2,3,4,4,4
+    head = InsertAtAnyPosition(2, 0, head);//2,2,3,4,4,4
+    head = InsertAtAnyPosition(2, 0, head);//2,2,2,3,4,4,4
+    head = InsertAtAnyPosition(1, 0, head);//1,2,2,2,3,4,4,4
+    head = InsertAtAnyPosition(0, 0, head);//0,1,2,2,2,3,4,4,4
+    print(head);
+    cout << endl;
+    head = RepetDe(head);
+    print(head);
+    return 0;
+}

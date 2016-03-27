@@ -1,0 +1,67 @@
+#include<iostream>
+#include<map>
+
+using namespace std;
+struct Node {
+    int data;
+    struct Node *next, *random;
+};
+
+Node *newNode(int info) {
+    Node *q = new Node();
+    q->data = info;
+    q->next = q->random = NULL;
+    return q;
+}
+
+Node *Clone(Node *head) {
+    Node *cl = NULL;
+    Node *A = head;
+    map<Node *, Node *> m;
+    while (A != NULL) {
+        cl = newNode(A->data);
+        m[A] = cl;
+        A = A->next;
+    }
+    A = head;
+    while (A != NULL) {
+        cl = m[A];
+        cl->next = m.find(A->next)->second;
+        cl->random = m.find(A->random)->second;
+        A = A->next;
+    }
+
+
+    return m.begin()->second;
+
+}
+
+void print_list(Node *head) {
+    Node *curr = head;
+    while (curr != NULL) {
+        cout << curr->data << " " << curr->random->data << endl;
+        curr = curr->next;
+    }
+}
+
+int main() {
+
+    Node *head = NULL;
+    head = newNode(1);
+    head->next = newNode(2);
+    head->next->next = newNode(3);
+    head->next->next->next = newNode(4);
+    head->next->next->next->next = newNode(5);
+
+    head->random = head->next->next;
+    head->next->random = head->next->next->next;
+    head->next->next->random = head;
+    head->next->next->next->random = head->next;
+    head->next->next->next->next->random = head->next->next->next->next;
+    print_list(head);
+    Node *clo = Clone(head);
+    cout << "---------" << endl;
+    print_list(clo);
+
+    return 0;
+}

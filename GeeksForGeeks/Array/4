@@ -1,0 +1,53 @@
+//  Largest Sum Contiguous Subarray //  Kadane's Algorithm
+
+#include<bits/stdc++.h>
+
+using namespace std;
+
+int MaxSum(int a[], int n) {
+    int sum = 0;
+    int k = 0;
+    for (int i = 0; i < n; i++) {
+        if (a[i] > 0)
+            k++;
+    }
+    //
+    if (k == n) {
+
+        for (int i = 0; i < n; i++)
+            sum += a[i];
+
+        return sum;
+    }
+    else if (k == 0) {
+        sum = a[0];
+        for (int i = 1; i < n; i++) {
+            sum = max(sum, a[i]);
+
+        }
+        return sum;
+    } else {
+        int kk = 0;
+        for (int i = 0; i < n; i++) {
+            sum = sum + a[i];
+            sum = max(0, sum);
+            kk = max(kk, sum);;
+
+        }
+
+        return kk;
+
+
+    }
+
+
+}
+
+int main() {
+
+    int a[] = {-2, -3, 4, -1, -2, 1, 5, -3};
+    int Arry_size = sizeof(a) / sizeof(a[1]);
+
+    cout << MaxSum(a, Arry_size);
+    return 0;
+}

@@ -1,0 +1,32 @@
+#include <stdio.h>
+
+#define mode 1000000007
+
+//using namespace std;
+long int call(int n) {
+    int i;
+    if (n == 1)
+        return 2;
+    if (n == 2)
+        return 3;
+    long int a = 2, b = 3, c;
+    for (i = 3; i <= n; i++) {
+        c = (a + b) % mode;
+        a = b;
+        b = c;
+    }
+    return c;
+
+
+}
+
+int main() {
+    int t;
+    scanf("%d", &t);
+    while (t--) {
+        int n;
+        scanf("%d", &n);
+        printf("%ld\n", call(n));
+    }
+    return 0;
+}

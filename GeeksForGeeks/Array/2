@@ -1,0 +1,30 @@
+//Majority Element: A majority element in an array A[] of size n is an element that appears more than n/2 times 
+
+#include<bits/stdc++.h>
+
+using namespace std;
+
+int Majority(int a[], int n) {
+    int b = a[0];
+    int c = 1;
+    for (int i = 1; i < n; i++) {
+        if (b == a[i])
+            c++;
+        else c--;
+        if (c <= 0) {
+            b = a[i];
+            c++;
+        }
+
+    }
+    return b;
+}
+
+int main() {
+
+    int a[] = {3, 3, 1, 4, 4, 4, 4, 4, 4, 4, 2, 1};
+    int Arry_size = sizeof(a) / sizeof(a[1]);
+
+    cout << Majority(a, Arry_size);
+    return 0;
+}

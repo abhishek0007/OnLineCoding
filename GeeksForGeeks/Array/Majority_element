@@ -1,0 +1,12 @@
+#include<bits/stdc++.h>
+
+using namespace std;
+
+int main() {
+    int a[] = {2, 6, 2, 2, 6, 2, 2, 8, 2, 1};
+    int n = 10;
+    sort(a, a + n);
+    cout << a[n / 2];
+
+    return 0;
+}

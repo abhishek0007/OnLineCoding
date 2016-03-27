@@ -1,0 +1,46 @@
+#include<bits/stdc++.h>
+
+using namespace std;
+struct Node {
+    int data;
+    Node *next;
+};
+
+Node *InsertionAtLast(int data, Node *head) {
+    Node *temp = new Node();
+    temp->data = data;
+    temp->next = NULL;
+    if (head == NULL)
+        head = temp;
+    else {
+        Node *temp1, *temp2 = head;
+        while (temp2 != NULL) {
+            temp1 = temp2;
+            temp2 = temp2->next;
+        }
+        temp1->next = temp;
+    }
+
+    return head;
+}
+
+void print(Node *head) {
+    while (head != NULL) {
+        cout << head->data << " ";
+        head = head->next;
+    }
+}
+
+int main() {
+
+    Node *head = NULL;
+    int data;
+    for (int i = 0; i < 10; i++) {
+        data = i;
+        head = InsertionAtLast(data, head);
+    }
+
+    print(head);
+
+    return 0;
+}
