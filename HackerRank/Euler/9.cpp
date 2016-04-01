@@ -1,9 +1,4 @@
-//
-// Created by a on 30/3/16.
-//
-
 #include<bits/stdc++.h>
-
 using namespace std;
 
 int main() {

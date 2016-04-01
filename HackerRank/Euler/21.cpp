@@ -1,28 +1,12 @@
-//
-// Created by a on 31/3/16.
-//
-
 #include<bits/stdc++.h>
-
 using namespace std;
 
-/*long amicable(long n)
+long amicable(long n)
 {
     long k=0,M=0;
-    for(long long  i=1; i<=n/2; ++i)
+    for (int i = 1; i * i < n; ++i)
         if(n%i==0)
         {
-            k+=i;
-        }
-    return k;
-}
-*/
-
-
-long long amicable(long long n) {
-    long k = 0, M = 0;
-    for (long long i = 1; i * i < n; ++i)
-        if (n % i == 0) {
             k += i + n / i;
         }
     return k - n;
@@ -30,22 +14,24 @@ long long amicable(long long n) {
 
 
 int main() {
-    long long t;
+    int t;
     cin >> t;
     while (t--) {
-        long long n;
+        int n;
         cin >> n;
 
         long sum = 0;
-        for (long long i = 1; i <= n; i++) {
-            long long x = amicable(i);
+        for (int i = 1; i <= n; i++) {
+            int x = amicable(i);
 
-            long long y = amicable(x);
+            int y = amicable(x);
 
-            if (i == y && x != i)
+            if (i == y && x != i) {
+                cout << i << " ";
                 sum += i;
+            }
         }
-        cout << sum - 1 << endl;
+        cout << sum << endl;
     }
     return 0;
 }

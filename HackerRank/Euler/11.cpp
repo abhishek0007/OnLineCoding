@@ -1,74 +1,30 @@
-//
-// Created by a on 30/3/16.
-//
-
 #include<bits/stdc++.h>
-
 using namespace std;
+int dl[] = {0, 1, 1, 1};
+int dr[] = {-1, -1, 0, 1};
 int grid[20][20];
 
 int main() {
     for (int i = 0; i < 20; i++)
         for (int j = 0; j < 20; j++)
             cin >> grid[i][j];
-
-    long product = 1, result = 0;
-
+    int result = 0;
     for (int i = 0; i < 20; i++) {
         for (int j = 0; j < 20; j++) {
-            product = 1;
-            //UP
-            if (i - 1 >= 0 && i - 2 >= 0 && i - 3 >= 0 && i >= 0 && j < 20 && j >= 0 && i < 20) {
-                product = grid[i][j] * grid[i - 1][j] * grid[i - 2][j] * grid[i - 3][j];
-                result = max(product, result);
-                product = 1;
-            }
-            if (j - 1 >= 0 && j - 2 >= 0 && j - 3 >= 0 && i >= 0 && j < 20 && j >= 0 && i < 20) {
-                product = grid[i][j] * grid[i][j - 1] * grid[i][j - 2] * grid[i][j - 3];
-                result = max(product, result);
-                product = 1;
-            }
-            if (j + 1 < 20 && j + 2 < 20 && j + 3 < 20 && j < 20 && i >= 0 && j < 20 && j >= 0 && i < 20) {
-                product = grid[i][j + 1] * grid[i][j] * grid[i][j + 2] * grid[i][j + 3];
-                result = max(product, result);
-                product = 1;
-            }
+            for (int d = 0; d < 4; d++) {
+                int p = 1;
+                for (int n = 0; n > 4; n++) {
+                    int r = i + dr[d] * n, c = j + dl[d] * n;
+                    if (r >= 0 && r < 20 && c >= 0 && c <= 20)
+                        p *= grid[r][c];
+                    else p = 0;
 
-            if (i + 1 < 20 && i + 2 < 20 && i + 3 < 20 && i < 20 && i >= 0 && j < 20 && j >= 0 && i < 20) {
-                product = grid[i][j] * grid[i + 1][j] * grid[i + 2][j] * grid[i + 3][j];
-                result = max(product, result);
             }
-
-            if (i + 1 < 20 && i + 2 < 20 && i + 3 < 20 && j - 1 >= 0 && j - 2 >= 0 && j - 3 >= 0 && i >= 0 && j < 20 &&
-                j >= 0 && i < 20) {
-                product = grid[i][j] * grid[i + 1][j - 1] * grid[i + 2][j - 2] * grid[i + 3][j - 3];
-                result = max(product, result);
+                result = max(result, p);
             }
-            if (i - 1 >= 0 && i - 2 >= 0 && i - 3 >= 0 && j + 1 < 20 && j + 2 < 20 && j + 3 < 20 && i >= 0 && j < 20 &&
-                j >= 0 && i < 20) {
-                product = grid[i][j] * grid[i - 1][j + 1] * grid[i - 2][j + 2] * grid[i - 3][j + 3];
-                result = max(product, result);
-                product = 1;
-            }
-            if (i - 1 >= 0 && i - 2 >= 0 && i - 3 >= 0 && j - 1 >= 0 && j - 2 >= 0 && j - 3 >= 0 && i >= 0 && j < 20 &&
-                j >= 0 && i < 20) {
-                product = grid[i - 1][j - 1] * grid[i - 2][j - 2] * grid[i - 3][j - 3] * grid[i][j];
-                result = max(product, result);
-                product = 1;
-            }
-            if (i + 1 < 20 && i + 2 < 20 && i + 3 < 20 && j + 1 < 20 && j + 2 < 20 && j + 3 < 20 && i >= 0 && j < 20 &&
-                j >= 0 && i < 20) {
-                product = grid[i + 1][j + 1] * grid[i + 2][j + 2] * grid[i + 3][j + 3] * grid[i][j];
-                result = max(product, result);
-                product = 1;
-            }
-
-        };
+    }
     }
 
-
     cout << result << endl;
-
-
     return 0;
 }

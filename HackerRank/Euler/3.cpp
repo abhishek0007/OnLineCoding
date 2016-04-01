@@ -1,13 +1,8 @@
-//
-// Created by a on 28/3/16.
-//
-
 #include <cmath>
 #include <cstdio>
 #include <vector>
 #include <iostream>
 #include <algorithm>
-
 using namespace std;
 
 

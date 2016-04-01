@@ -1,9 +1,4 @@
-//
-// Created by a on 29/3/16.
-//
-
 #include<bits/stdc++.h>
-
 using namespace std;
 
 int gcd1(int a, int b) {
@@ -27,12 +22,10 @@ int main() {
     int t;
     cin >> t;
     while (t--) {
-        int n;
-        cin >> n;
-        int m = 1;
-        for (int i = 1; i <= n; i++)
-            m = lcm(m, i);
-        cout << m << endl;
+        int a, b;
+        cin >> a >> b;
+        cout << lcm(a, b) << " " << gcd(a, b) << endl;
+
     }
     return 0;
 }

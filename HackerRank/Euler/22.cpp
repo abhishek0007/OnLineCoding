@@ -1,13 +1,8 @@
-//
-// Created by a on 31/3/16.
-//
-
 #include <cmath>
 #include <cstdio>
 #include <vector>
 #include <iostream>
 #include <algorithm>
-
 using namespace std;
 
 int main() {
@@ -30,11 +25,9 @@ int main() {
         cin >> ss;
         long sum = 0;
         for (int i = 0; i < ss.length(); i++)
-            // cout<<(int)ss[i]-64<<" ";
-            sum += (int) ss[i] - 64;
-//        cout<<endl;
+            sum += (int) ss[i] - 65;
         it = find(v.begin(), v.end(), ss);
-        cout << ((it - v.begin()) + 1) * sum << endl;
+        cout << (it - v.begin()) * sum << endl;
 
     }
 

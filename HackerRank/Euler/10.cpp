@@ -1,40 +1,40 @@
-//
-// Created by a on 30/3/16.
-//
-
 #include <cmath>
+#include <cstdio>
 #include <vector>
 #include <iostream>
 #include <algorithm>
 #include<bits/stdc++.h>
-
 using namespace std;
 
-const int MAX = 1000007;
-long long a[MAX];
 
 int main() {
-    for (int i = 2; i <= (MAX); i++) {
-        if (a[i] == 0) {
-            for (int j = 2; i * j <= MAX; j++)
-                a[i * j] = 1;
-
-        }
-    }
-    for (int i = 2; i <= MAX; i++) {
-        a[i] = a[i - 1] + (a[i] ? 0 : i);
-    }
-
     int T;
-    cin >> T;
+//   cin>>T;
+    T = 1;
+
     long long N;
-
-
     while (T--) {
-        cin >> N;
-
+//        cin>>N;
+        N = 99999;
         long long sum = 0;
-        cout << a[N] << endl;
+        bool a[N];
+        //  memset(a,0,N);
+        for (int i = 2; i <= N; i++) {
+            a[i] = 0;
+        }
+        for (int i = 2; i <= sqrt(N); i++) {
+            if (a[i] == 0) {
+                for (int j = 2; i * j <= N; j++)
+                    a[i * j] = -1;
+
+            }
+        }
+
+        for (int i = 2; i <= N; i++)
+            if (a[i] == 0)
+                sum += i;
+        cout << sum << endl;
+
     }
     return 0;
 }
