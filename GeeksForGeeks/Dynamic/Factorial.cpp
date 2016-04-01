@@ -17,7 +17,7 @@ int factor(int n) {
 int main() {
 
     int n;
-
+    cout << "Working";
 
     return 0;
 }
